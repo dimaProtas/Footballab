@@ -1,0 +1,59 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+
+{% block content %}
+{% if messages %}
+<div class="bg-success">
+    {% for message in messages %}
+    {% if message.tags %}{% endif %}{{ message }}
+    {% endfor %}
+</div>
+{% endif %}
+<section id="container">
+    <div class="zerogrid">
+        <div class="wrap-container clearfix">
+            <div id="main-content">
+                <div class="wrap-box"><!--Start Box-->
+                    <div class="row">
+                        <div class="col-2-3">
+                            <div class="wrap-col">
+                                <div class="contact">
+                                    <div class="contact-header">
+                                        <h5>Обратная связь</h5>
+                                    </div>
+                                    <div id="contact_form">
+                                        <form name="form1" id="ff" method="post">
+                                            {% csrf_token %}
+                                            {{ form.as_p }}
+                                            <center><input class="sendButton" type="submit" name="submitcontact"
+                                                           value="Отправить"></center>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1-3">
+                            <div class="wrap-col">
+                                <div class="contact-header">
+                                    <h5>Наши контакты</h5>
+                                </div>
+                                <div style="background: #fff; padding: 20px; box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.3);">
+                                    <span>Спасибо за то что вы посетили наш сайт, надеемся вам он понравился.</span>
+                                    <p>По вопросам сотрудничества пишита или звоните по контактам оставленным ниже.
+                                    С у важением администрация сайта.</p>
+                                    <p>Москва, ул.Складоная, Россия</p>
+                                    <p>+79252257315; <br>
+                                        +6221 888 88891</p>
+                                    <p>footballab@mail.ru</p>
+                                    <p>Разработчик сайта: dima_protasevich92@mail.ru</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% load static %}
+{% load cache %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Basic Page Needs
+  ================================================== -->
+    <meta charset="utf-8">
+    <title>FOOTBALLAB</title>
+    <meta name="description" content="Free Responsive Html5 Css3 Templates | zerotheme.com">
+    <meta name="author" content="www.zerotheme.com">
+
+    <!-- Mobile Specific Metas
+  ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/zerogrid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsiveslides.css' %}">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+
+
+    <script src="{% static 'js/jquery-latest.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/jquery183.min.js' %}"></script>
+    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <script>
+		// You can also use "$(window).load(function() {"
+		$(function () {
+		  // Slideshow
+		  $("#slider").responsiveSlides({
+			auto: true,
+			pager: false,
+			nav: true,
+			speed: 500,
+			namespace: "callbacks",
+			before: function () {
+			  $('.events').append("<li>before event fired.</li>");
+			},
+			after: function () {
+			  $('.events').append("<li>after event fired.</li>");
+			}
+		  });
+		});
+
+
+    </script>
+
+
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+            <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0"
+                 height="42" width="820"
+                 alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
+        </a>
+    </div>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script src="{% static 'js/html5.js' %}"></script>
+    <script src="{% static 'js/css3-mediaqueries.js' %}"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="wrap-body">
+
+    <!-- /////////////////////////////////////////Top -->
+    <div class="top">
+        <div class="zerogrid">
+            <div class="row">
+                <div class="f-left">
+                    <span><i class="fa fa-map-marker"></i> Москва, ул.Складочная, Россия  </span>
+                    <span><i class="fa fa-phone"></i> +79252257315;</span>
+                    <span><i class="fa fa-envelope"></i> footballab@mail.ru</span>
+                </div>
+                <div class="f-right">
+                    <span>Однажды полюбив футбол, он останеться с тобой на всю жизнь.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--////////////////////////////////////Header-->
+    <header>
+        <div class="wrap-header zerogrid">
+            <div class="row">
+                <div id="cssmenu">
+                    <ul>
+                        <li class='active'><a href="{% url 'index' %}">Главная</a></li>
+                        <li><a href="{% url 'news_all' %}">Новости</a></li>
+                        <li><a href="{% url 'club' %}">Клуб</a></li>
+                        <li><a href="{% url 'sub' %}">Абонименты</a></li>
+                        <li><a href="{% url 'locations' %}">Локации</a></li>
+                        <li><a href="{% url 'contact' %}">Контакты</a></li>
+                    </ul>
+                </div>
+                <a href='{% url "index" %}' class="logo"><img src="{% static 'images/logo.png' %}"/></a>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <!--////////////////////////////////////Footer-->
+
+    <footer>
+
+        <div class="zerogrid wrap-footer">
+            <div class="row">
+                <div class="col-1-4 col-footer-1">
+                    <a href="{% url 'index' %}" class="logo"><img src="{% static 'images/logo_niz.png' %}"/></a>
+                </div>
+                <div class="col-1-4 col-footer-1">
+                    <div class="wrap-col">
+                        <h3>О нас</h3>
+                        <p>Наша каманда состоит из професианальных тренеров, психологов, и самых лучших
+                                администраторов</p>
+                        <p>
+                            Наша программа тренировок основана на собственном опыте проведения занятий более 7 лет, а также на основе тренировок ведущих европейских клубов. Наши специалисты являются авторами детских развивающих программ для малышей 2-6 лет.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-1-4 col-footer-2">
+                    <div class="wrap-col">
+                        <h3>Категории</h3>
+                        <ul>
+                            {% for cat in category %}
+                            <li><a href="{% url 'category' slug=cat.slug %}">{{ cat.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-1-4 col-footer-4">
+                    <div class="wrap-col">
+                        <h3>Контакты</h3>
+                        <span><i class="fa fa-envelope"></i> footballlab.ru</span>
+                        <span><i class="fa fa-phone"></i> 1-800-123-1234; 1-800-123-5678</span>
+                        <span><i class="fa fa-map-marker"></i> Москва, ул.Складочная, Россия  </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">
+        <div class="zerogrid wrapper">
+            Все права защищены. <a href="https://footballlab.ru/">© 2018-2022 Football Lab</a>
+            <ul class="quick-link f-right">
+                <li><a href="https://vk.com/dimka_protasevich">Разрабочик сайта</a></li>
+                <li><a href="#">условия использования</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

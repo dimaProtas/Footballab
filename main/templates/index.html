@@ -1,0 +1,255 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% load cache %}
+
+
+{% block content %}
+
+<div class="bg-white">
+    <div class="zerogrid">
+        <!-- Slideshow -->
+        <div class="callbacks_container">
+            <ul class="rslides" id="slider">
+                <li>
+                    <img src="static/images/slideshow-image1.jpg" alt="">
+                    <div class="caption">
+                        <h1>Добро пожаловать в нашу команду</h1>
+                        <span>Футбол – это искусство!</span>
+                    </div>
+                </li>
+                <li>
+                    <img src="static/images/slideshow-image2.jpg" alt="">
+                    <div class="caption">
+                        <h1>Добро пожаловать в нашу команду</h1>
+                        <span>Мало попасть в ворота, надо еще промахнуться мимо вратаря.</span>
+                    </div>
+                </li>
+                <li>
+                    <img src="static/images/russia.jpg" alt="">
+                    <div class="caption">
+                        <h1>Добро пожаловать в нашу команду</h1>
+                        <span>Футбол – целая жизнь. Его можно любить сильнее, чем театр, музыку и политику вместе взятые.</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<!--////////////////////////////////////Container-->
+<section id="container" class="home-page">
+    <div class="wrap-container clearfix">
+        <div id="main-content">
+
+            <section class="content-box box-1 box-style-1"><!--Start Box-->
+                <div class="wrap-box">
+                    <div class="zerogrid">
+                        <div class="row">
+                            <div class="col-1-3">
+                                <div class="wrap-col">
+                                    <div class="sub-title">
+                                        <h2>ИЗБРАННЫЕ НОВОСТИ</h2>
+                                    </div>
+                                    {% for p in post_favourites %}
+                                    <div class="item">
+                                        {% if p.image %}
+                                        <img class="img_idx" src="{{ p.image.url }}"/>
+                                        {% endif %}
+                                        <div class="item-content">
+                                            <a href="{% url 'detail' slug=p.slug %}"><h3>{{ p.title }}</h3></a>
+                                            <div class="info">{{ p.created_at }} <a
+                                                    href="{% url 'category' slug=p.category.slug %}">
+                                                {{ p.category }}</a>, <a href="{% url 'news_all' %}">Новости</a></div>
+                                            <p>{{ p.content|truncatewords:10|safe }}</p>
+                                            <a href="{% url 'detail' slug=p.slug %}">Читать...</a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-1-3">
+                                <div class="wrap-col">
+                                    <div class="sub-title">
+                                        <h2>ПРЕДСТОЯЩИЕ СОБЫТИЯ</h2>
+                                    </div>
+                                    {% for p_upcoming in post_upcoming %}
+                                    <div class="row">
+                                        <div class="item">
+                                            <div class="item-content">
+                                                <a href="{% url 'detail' slug=p_upcoming.slug %}">
+                                                    <h3>{{ p_upcoming.title }}</h3></a>
+                                                <div class="info">{{ p_upcoming.created_at }}
+                                                    <a href="{% url 'category' slug=p_upcoming.category.slug %}">
+                                                    {{ p_upcoming.category }}</a>,
+                                                    <a href="{% url 'news_all' %}">Новости</a></div>
+                                                <p>{{ p_upcoming.content|truncatewords:10|safe }}</p>
+                                                <a href="{% url 'detail' slug=p_upcoming.slug %}">Читать...</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                            <div class="col-1-3">
+                                {% for p_match in post_match %}
+                                <div class="wrap-col">
+                                    <div class="sub-title">
+                                        <h2>ПРЕДСТОЯЩИЕ МАТЧИ</h2>
+                                    </div>
+                                    <h2 style="font-size: 35px;line-height: 1.3;margin-bottom: 10px;">
+                                        {{ p_match.title }}</h2>
+                                    {% if p_match.image %}
+                                    <img class="img_idx" src="{{ p_match.image.url }}"/>
+                                    {% endif %}
+                                    <p>{{ p_match.content|truncatewords:10|safe }}</p>
+                                    <a href="{% url 'category' slug=p_match.category.slug %}">Просмотреть все
+                                        матчи</a><br>
+                                    <a href="{% url 'detail' slug=p_match.slug %}" class="button bt1">ПОДРОБНЕЕ</a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content-box box-2 box-style-3"><!--Start Box Тренеры-->
+                <div class="wrap-box">
+                    <div class="zerogrid">
+                        <div class="title">
+                            <a href="{% url 'team_all' %}"><h2><span>Our</span> Team</h2></a>
+                        </div>
+                        <div class="row">
+                            {% for c in coach %}
+                            <div class="row">
+                                <div class="col-1-4">
+                                    <div class="wrap-col">
+                                        <div class="item t-center">
+                                            <div class="item-container">
+                                                <a href="{{ c.get_absolut_url }}">
+                                                    <div class="item-caption">
+                                                        <div class="item-caption-inner">
+                                                            <div class="item-caption-inner1">
+                                                            <span class="user-social"><i class="fa fa-facebook"></i><i
+                                                                    class="fa fa-twitter"></i><i
+                                                                    class="fa fa-google-plus"></i><i
+                                                                    class="fa fa-pinterest"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% if c.photo %}
+                                                    <img src="{{ c.photo.url }}"/>
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                            <div class="item-content">
+                                                <a href="{{ c.get_absolut_url }}"><h3>{{ c.name }}</h3></a>
+                                                <p>Тренер</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content-box box-3 box-style-2"><!--Start Box-->
+                <div class="wrap-box t-center">
+                    <div class="zerogrid">
+                        <div class="title">
+                            <h2>ДОБРО ПОЖАЛОВАТЬ <span> НА НАШ САЙТ</span></h2>
+                        </div>
+                        <strong><h3>Футбол — это жизнь!</h3></strong>
+                        <p>Футбол (от англ. foot — ступня, ball — мяч) — самый популярный командный вид спорта в мире,
+                            целью в котором является забить мяч в ворота соперника большее число раз, чем это сделает
+                            команда соперника в установленное время. Мяч в ворота можно забивать ногами или любыми
+                            другими частями тела (кроме рук).</p>
+                        <a href="{% url 'club' %}" class="button bt1">Подробнее</a>
+                    </div>
+                </div>
+            </section>
+            <section class="content-box box-4 box-style-1"><!--Start Box-->
+                <div class="wrap-box">
+                    <div class="zerogrid">
+                        <div class="row">
+                            <div class="col-1-4">
+                                <div class="wrap-col">
+                                    <div class="sub-title">
+                                        <h2>Реклама</h2>
+                                    </div>
+                                    {% for adv in advertisement %}
+                                    <div class="item">
+                                        {% if adv.image %}
+                                        <a href="{% url 'detail' slug=adv.slug %}"><img src="{{ adv.image.url }}"/></a>
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+                                    <!--                                    <div class="item">-->
+                                    <!--                                        <img src="static/images/banner2.jpg"/>-->
+                                    <!--                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="col-2-4">
+                                <div class="wrap-col">
+                                    <div class="sub-title">
+                                        <h2>ПРЕДСТОЯЩИЕ СОБЫТИЯ</h2>
+                                    </div>
+                                    {% for event in events %}
+                                    <div class="row">
+                                        <div class="item">
+                                            <div class="col-1-3">
+                                                <div class="item-date-box">
+                                                    <div class="item-caption-inner">
+                                                        <div class="item-caption-inner1">
+                                                            <h3>{{ event.date_event|date:"d" }}</h3>
+                                                            <span>{{ event.date_event|date:"M o" }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-2-3">
+                                                <div class="item-content">
+                                                    <a href="{% url 'detail' slug=event.slug %}">
+                                                        <h3>{{ event.title }}</h3></a>
+                                                    <div class="info">{{ event.created_at }}</div>
+                                                    <p>{{ event.content|truncatewords:10|safe }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                            <div class="col-1-4">
+                                <div class="wrap-col">
+                                    <div class="sub-title">
+                                        <h2>Интересное о футболе</h2>
+                                    </div>
+                                    {% for foot in football %}
+                                    <div class="item">
+                                        {% if foot.image %}
+                                        <img src="{{ foot.image.url }}"/>
+                                        {% endif %}
+                                        <div class="item-content">
+                                            <a href="{% url 'detail' slug=foot.slug %}"><h3>{{ foot.title }}</h3></a>
+                                            <p>{{ foot.content|truncatewords:10|safe }}</p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</section>
+{%  endblock %}

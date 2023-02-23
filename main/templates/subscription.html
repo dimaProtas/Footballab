@@ -1,0 +1,245 @@
+{% extends 'layout/basic.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<div class="box_groups" style="background-image: url({% static 'images/bg_groups.jpg' %})" id="to_groups">
+    <div class="page_box">
+        <div align="center">
+            <div class="t_h1" style="max-width:730px;">
+                <div class="td">
+                    <div class="line_h" style="border-bottom:1px solid #ffffff;">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="space1">
+                    &nbsp;
+                </div>
+                <div class="td">
+                    <p class="h1" style="text-align:center; color:#FFFFFF;">
+                        Football Lab тренирует</p>
+                </div>
+                <div class="space2">
+                    &nbsp;
+                </div>
+                <div class="td">
+                    <div class="line_h" style="border-bottom:1px solid #ffffff;">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+            <div class="clear0">
+                &nbsp;
+            </div>
+        </div>
+        <br>
+        <div class="t_groups">
+            <div class="td1">
+                <div class="title_group1" style="background-image: url({% static 'images/bg_title_group1.jpg' %})">
+                    <p>
+                        Группы<br>
+                        <span>от 2 до 4 лет</span></p>
+                </div>
+                <div class="groups_col_box">
+                    <p class="cena_txt">
+                        Цена</p>
+                    <p class="price">
+                        6400 <span>руб.</span></p>
+                    <p class="txt_action">
+                        <s>8 900 руб.</s></p>
+                    <ul class="group_check" id="m_group1">
+                        <li>
+                            8 занятий, 2 раза в неделю
+                        </li>
+                        <li>
+                            освоение базовых технических футбольных навыков
+                        </li>
+                        <li>
+                            развитие координации, быстроты и гибкости
+                        </li>
+                        <li>
+                            социализация в группе
+                        </li>
+                        <li>
+                            развитие внимания, умения сосредоточиться
+                        </li>
+                    </ul>
+                    <br>
+                    <div align="center">
+                        <a href="{% url 'subscription' %}" class="button8">Записаться</a>
+                    </div>
+                    <br>
+                    &nbsp;
+                </div>
+            </div>
+            <div class="space1">
+                &nbsp;
+            </div>
+            <div class="td2">
+                <div class="title_group2" style="background-image: url({% static 'images/bg_title_group2.jpg' %})">
+                    <p>
+                        Группы<br>
+                        <span>от 5 до 10 лет</span></p>
+                </div>
+                <div class="groups_col_box">
+                    <p class="cena_txt">
+                        Цена</p>
+                    <p class="price">
+                        6400 <span>руб.</span></p>
+                    <p class="txt_action">
+                        <s>8 900 руб.</s></p>
+                    <ul class="group_check" id="m_group2">
+                        <li>
+                            8 занятий, 2 раза в неделю
+                        </li>
+                        <li>
+                            освоение и совершенствование футбольных навыков
+                        </li>
+                        <li>
+                            навыки работать в команде
+                        </li>
+                        <li>
+                            развитие быстроты, гибкости и координированности движений
+                        </li>
+                        <li>
+                            формирование навыков самодисциплины
+                        </li>
+                        <li>
+                            товарищеские игры, участие в&nbsp;турнирах, выездные учебно-тренировочные сборы
+                        </li>
+                    </ul>
+                    <br>
+                    <div align="center">
+                        <a href="{% url 'subscription' %}" class="button8">Записаться</a>
+                    </div>
+                    <br>
+                    &nbsp;
+                </div>
+            </div>
+            <div class="space2">
+                &nbsp;
+            </div>
+            <div class="td3">
+                <div class="title_group3" style="background-image: url({% static 'images/bg_title_group1.jpg' %})">
+                    <p>
+                        Группы в филиалах<br>
+                        <span class="small">Ленинградское ш., 27<br>
+                            Дмитровское ш., 79</span></p>
+                </div>
+                <div class="groups_col_box">
+                    <p class="cena_txt">
+                        Цена</p>
+                    <p class="price">
+                        5200 <span>руб.</span></p>
+                    <ul class="group_check" id="m_group3">
+                        <li>
+                            8 занятий, 2&nbsp;раза в неделю
+                        </li>
+                        <li style="width: 252.375px; line-height: 20.25px;">
+                            освоение и совершенствование футбольных навыков
+                        </li>
+                        <li>
+                            развитие координации, ловкости, гибкости
+                        </li>
+                        <li>
+                            Социализация в группе
+                        </li>
+                        <li style="width: 252.375px; line-height: 20.25px;">
+                            формирование навыков самодисциплины
+                        </li>
+                    </ul>
+                    <br>
+                    <div align="center">
+                        <a href="{% url 'subscription' %}" class="button8">Записаться</a>
+                    </div>
+                    <br>
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <div class="clear0">
+            &nbsp;
+        </div>
+        <br>
+        <br>
+        <p class="groups_note">
+            Первое пробное занятие бесплатно!</p>
+    </div>
+</div>
+
+<div class="page_box">
+    <div align="center">
+        <div class="t_h1">
+            <div class="td1">
+            </div>
+            <div class="space1">
+                &nbsp;
+            </div>
+            <div class="h1">
+                <p class="item-content" style="text-align:center;">
+                    Индивидуальные занятия с тренером</p>
+            </div>
+            <div class="space2">
+                &nbsp;
+            </div>
+            <div class="td3">
+            </div>
+        </div>
+        <div class="clear0">
+            &nbsp;
+        </div>
+    </div>
+    <p style="text-align: center;">
+        Когда у Вас «плавающий» график, и очень сложно приспособиться к тренировкам по установленному расписанию, или вы
+        хотите, чтобы ваш ребенок получил максимум пользы от каждого занятия, Football Lab предлагает индивидуальные
+        тренировки. Вы можете записаться к любому практикующему тренеру, и договориться об удобном для вас времени
+        занятий.</p>
+    <div class="t_block_pt">
+        <div class="td_flex">
+            <div class="td1">
+                <p style="text-align: center;">
+                    <img alt="Индивидуальные занятия с тренером" src="{% static 'images/baby_foot.jpg' %}"
+                         style="width: 100%; border-width: 0px; border-style: solid; max-width:436px;"></p>
+            </div>
+            <div class="space">
+                &nbsp;
+            </div>
+            <div class="td2 c_not">
+                <p class="h3">
+                    Преимущества индивидуальной тренировки</p>
+                <ul class="list_none">
+                    <li>
+                        <img alt="" src="{% static 'images/check2.png' %}"
+                             style="width: 21px; height: 19px; position: relative; margin-right: 10px; top: 4px; margin-bottom: 20px; float: left;">Индивидуально
+                        согласованное время занятия
+                    </li>
+                    <li>
+                        <img alt="" src="{% static 'images/check2.png' %}"
+                             style="width: 21px; height: 19px; position: relative; margin-right: 10px; top: 4px; margin-bottom: 20px; float: left;">Развитие
+                        физических, технических, а также психологических качеств
+                    </li>
+                    <li>
+                        <img alt="" src="{% static 'images/check2.png' %}"
+                             style="width: 21px; height: 19px; position: relative; margin-right: 10px; top: 4px; margin-bottom: 20px; float: left;">Индивидуальный
+                        план занятия под каждого ученика.
+                    </li>
+                    <li>
+                        <img alt="" src="{% static 'images/check2.png' %}"
+                             style="width: 21px; height: 19px; position: relative; margin-right: 10px; top: 4px; margin-bottom: 20px; float: left;">Длительность
+                        занятия 45 - 75&nbsp;минут в зависимости от возраста и подготовленности
+                    </li>
+                </ul>
+                <p>
+                    Стоимость индивидуального занятия</p>
+                <p class="h2" style="margin:0px;">
+                    <span class="h1">1990</span> рублей</p>
+                <p class="h2" style="margin:0px;">
+                    &nbsp;</p>
+                <a href="{% url 'subscription' %}" class="button8">Записаться</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%  endblock %}

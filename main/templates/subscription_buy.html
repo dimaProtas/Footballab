@@ -1,0 +1,42 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+
+{% block content %}
+{% if messages %}
+<div class="bg-success">
+    {% for message in messages %}
+    {% if message.tags %}{% endif %}{{ message }}
+    {% endfor %}
+</div>
+{% endif %}
+<section id="container">
+    <div class="container_sub zerogrid">
+        <div class="wrap-container clearfix">
+            <div id="item_sub main-content">
+                <div class="wrap-box"><!--Start Box-->
+                    <div class="row">
+                        <div class="">
+                            <div class="wrap-col">
+                                <div class="contact">
+                                    <div class="contact-header">
+                                        <h5>Записаться внашу команду</h5>
+                                    </div>
+                                    <div id="contact_form">
+                                        <form name="form1" id="ff" method="post">
+                                            {% csrf_token %}
+                                            {{ form.as_p }}
+                                            <center><input class="sendButton" type="submit" name="submitcontact"
+                                                           value="Записаться"></center>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

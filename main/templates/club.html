@@ -1,0 +1,96 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+
+{% block content %}
+<section id="container" class="sub-page">
+    <div class="wrap-container zerogrid">
+        <div id="main-content" class="col-2-3">
+            <div class="wrap-col">
+                <div class="wrap-content">
+                    <article>
+                        <h1 class="title_category">Детская футбольная школа Football Lab</h1>
+                        <img src="{% static 'images/club_image.jpg' %}">
+                        <p>Football Lab - футбольная школа для детей от 2 лет в Москве. Школа современного формата, с
+                            футбольными площадками в разных районах Москвы. Тренировки проводят опытные специалисты по
+                            методикам ведущих европейских футбольных клубов.</p>
+                        <p>На тренировках мы развиваем детей технически, физически и психологически. С детьми работают
+                            тренеры с высшим спортивным или педагогическим образованием. Мы полагаемся не только на опыт
+                            тренера в развитии ребенка, а в первую очередь, на качество преподносимого материала и
+                            стратегию развития личности.</p>
+                    </article>
+                    <article>
+                        <h1>Программа адаптации</h1>
+                        <p>Нами разработана программа адаптации для детей, которым сложно влиться в тренировочный
+                            процесс. В процессе адаптации мы учитываем возрастные особенности как самых маленьких детей,
+                            так и ребят старшего дошкольного возраста.</p>
+                    </article>
+                    <article>
+                        <h1>Опыт работы</h1>
+                        <p>Наша программа тренировок основана на собственном опыте проведения занятий более 7 лет, а
+                            также на основе тренировок ведущих европейских клубов. Наши специалисты являются авторами
+                            детских развивающих программ для малышей 2-6 лет.</p>
+                    </article>
+                    <article>
+                        <h1>Совершенствование</h1>
+                        <p>Мы постоянно совершенствуем тренировочный процесс. Уникальность каждого ребенка вдохновляет
+                            нас переосмыслять устоявшиеся стереотипы и искать новые пути реализации потенциала,
+                            заложенного в него природой.</p>
+                    </article>
+                    <article>
+                        <h1>Исследования</h1>
+                        <p>Мы учитываем данные последних исследований в области физического развития, детской физиологии
+                            и психологии, чтобы наши тренировки были максимально эффективными для Вашего ребенка..</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div id="sidebar" class="col-1-3">
+            <div class="wrap-col">
+                <div class="wrap-sidebar">
+                    <!---- Start Widget ---->
+                    <div class="widget wid-about">
+                        <div class="wid-header">
+                            <h5>О Нас</h5>
+                        </div>
+                        <div class="wid-content">
+                            <img src="{% static 'images/logo.png' %}"/>
+                            <p>Наша каманда состоит из професианальных тренеров, психологов, и самых лучших
+                                администраторов</p>
+                        </div>
+                    </div>
+                    <!---- Start Widget ---->
+                    <div class="widget wid-post">
+                        <div class="wid-header">
+                            <h5>Последние новости</h5>
+                        </div>
+                        {% for w in post_widget %}
+                        <div class="wid-content">
+                            <div class="post">
+                                <a href="{% url 'detail' slug=w.slug %}"><img src="{{ w.image.url }}"/></a>
+                                <div class="wrapper">
+                                    <h5><a href="{% url 'detail' slug=w.slug %}">{{ w.title|truncatewords:2 }}</a></h5>
+                                    <span>Автор: {{ w.author }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!---- Start Widget ---->
+                    <div class="widget wid-gallery">
+                        <div class="wid-header">
+                            <h5>Галерея</h5>
+                        </div>
+                        <div class="wid-content">
+                            {% for g in galery %}
+                            <a href="{% url 'galery' %}"><img src="{{ g.image.url }}"></a>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

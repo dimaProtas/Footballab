@@ -1,0 +1,107 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% load cache %}
+
+
+{% block content %}
+
+<section id="container" class="sub-page">
+    <div class="wrap-container zerogrid">
+        <div id="main-content" class="col-2-3">
+            <div class="wrap-col">
+                <div class="wrap-content">
+                    {% for n in page_obj %}
+                    <article>
+                        <div class="art-header">
+                            <img src="{{ n.image.url }}"/>
+                        </div>
+                        <div class="art-content">
+                            <a href="{% url 'detail' slug=n.slug %}"><h3>{{ n.title }}</h3></a>
+                            <div class="info">{{ n.created_at }}
+                                <a href="{% url 'category' slug=n.category.slug %}">{{ n.category }}</a></div>
+                            <p>{{ n.content|truncatewords:40|safe }}</p>
+                            <a class="button button02" href="{% url 'detail' slug=n.slug %}">Читать...</a>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if page_obj.has_other_pages %}
+            <div class="pegination">
+                <div class="nav-links">
+
+                    {% if page_obj.has_previous %}
+                    <a class="page-numbers" href="?page={{ page_obj.previous_page_number }}">Назад<i
+                            class="fa fa-angle-left" aria-hidden="true"></i></a>
+                    {% endif %}
+
+                    {% for p in page_obj.paginator.page_range %}
+                    {% if page_obj.number == p %}
+                    <span class="page-numbers current">{{ p }}</span>
+                    {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                    <a class="page-numbers" href="?page={{ p }}">{{ p }}</a>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <a class="page-numbers" href="?page={{ page_obj.next_page_number }}"><i
+                            class="fa fa-angle-right" aria-hidden="true">Далее</i></a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+        {% cache 100 'wigets' %}
+        <div id="sidebar" class="col-1-3">
+            <div class="wrap-col">
+                <div class="wrap-sidebar">
+                    <!---- Start Widget ---->
+                    <div class="widget wid-about">
+                        <div class="wid-header">
+                            <h5>О Нас</h5>
+                        </div>
+                        <div class="wid-content">
+                            <img src="{% static 'images/logo.png' %}"/>
+                            <p>Наша каманда состоит из професианальных тренеров, психологов, и самых лучших
+                                администраторов</p>
+                        </div>
+                    </div>
+                    <!---- Start Widget ---->
+                    <div class="widget wid-post">
+                        <div class="wid-header">
+                            <h5>Последние новости</h5>
+                        </div>
+                        {% for w in post_widget %}
+                        <div class="wid-content">
+                            <div class="post">
+                                <a href="{% url 'detail' slug=w.slug %}"><img src="{{ w.image.url }}"/></a>
+                                <div class="wrapper">
+                                    <h5><a href="{% url 'detail' slug=w.slug %}">{{ w.title|truncatewords:2 }}</a></h5>
+                                    <span>Автор: {{ w.author }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!---- Start Widget ---->
+                    <div class="widget wid-gallery">
+                        <div class="wid-header">
+                            <h5>Галерея</h5>
+                        </div>
+                        <div class="wid-content">
+                            {% for g in galery %}
+                            <a href="{% url 'galery' %}"><img src="{{ g.image.url }}"></a>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endcache %}
+    </div>
+</section>
+
+{% endblock %}

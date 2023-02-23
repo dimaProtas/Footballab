@@ -1,0 +1,77 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% load cache %}
+
+
+{% block content %}
+<section id="container" class="sub-page">
+    <div class="wrap-container zerogrid">
+        <div id="main-content" class="col-2-3">
+            <div class="wrap-col">
+                <div class="wrap-content">
+                    <article>
+                        <div class="art-header">
+
+                            <img src="{{ team.photo.url }}"/>
+                        </div>
+                        <div class="art-content">
+                            <a href="#"><h3 style="font-size: 37px; line-height: 1.5;">{{ team.name }} {{ team.surname }}</h3></a>
+                            <div class="info">{{ team.created_at }}</div>
+                            <div class="excerpt"><p>Контакты: {{ team.email }}</p></div>
+                            <p>{{ team.resume|safe }}</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div id="sidebar" class="col-1-3">
+            <div class="wrap-col">
+                {% cache 100 'widjet' %}
+                <div class="wrap-sidebar">
+                    <!---- Start Widget ---->
+                    <div class="widget wid-about">
+                        <div class="wid-header">
+                            <h5>О Нас</h5>
+                        </div>
+                        <div class="wid-content">
+                            <img src="{% static 'images/logo.png' %}"/>
+                            <p>Наша каманда состоит из професианальных тренеров, психологов, и самых лучших
+                                администраторов</p>
+                        </div>
+                    </div>
+                    <!---- Start Widget ---->
+                    <div class="widget wid-post">
+                        <div class="wid-header">
+                            <h5>Последние новости</h5>
+                        </div>
+                        {% for w in post_widget %}
+                        <div class="wid-content">
+                            <div class="post">
+                                <a href="{% url 'detail' slug=w.slug %}"><img src="{{ w.image.url }}"/></a>
+                                <div class="wrapper">
+                                    <h5><a href="{% url 'detail' slug=w.slug %}">{{ w.title|truncatewords:2 }}</a></h5>
+                                    <span>Автор: {{ w.author }}</span>
+                                </div>
+                            </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!---- Start Widget ---->
+                    <div class="widget wid-gallery">
+                        <div class="wid-header">
+                            <h5>Галерея</h5>
+                        </div>
+                        <div class="wid-content">
+                            {% for g in galery %}
+                            <a href="#"><img src="{{ g.image.url }}"></a>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                {% endcache %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
