@@ -5,9 +5,9 @@
 
 Стек
 Python > 3.10
-isort, black, autoflake
-Django < 3.3
-Celery[Redis]
+  isort, black, autoflake
+  Django < 3.3
+  Celery[Redis]
 SQLite 3
 Лицензия
 MIT
