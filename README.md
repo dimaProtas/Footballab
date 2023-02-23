@@ -3,11 +3,15 @@
 
 Учебный проект деской футбольной школы, который разработан самостоятельно при прохождений обучения.
 
-Стек
-Python > 3.10
-  isort, black, autoflake
-  Django < 3.3
-  Celery[Redis]
-SQLite 3
-Лицензия
+## Стек
+
+- Python > 3.7
+  - isort, black, autoflake
+  - Django < 3.3
+  - Celery[Redis]
+- VSCode
+- SQLite 3
+
+## Лицензия
+
 MIT
